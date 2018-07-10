@@ -43,3 +43,4 @@ testem.log
 Thumbs.db
 # hide api vendor files
 api/vendor/*
+/package-lock.json
