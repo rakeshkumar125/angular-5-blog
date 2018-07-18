@@ -1,0 +1,65 @@
+<div id="signupbox"  class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Sign Up</div>
+                            
+                        </div>  
+                        <div class="panel-body" >
+                            
+                         
+                            <div class="alert alert-success" *ngIf="userRegisterStatus">
+  <strong>Success!</strong> You have successfully registered.</div>
+
+                            <form id="signupform" class="form-horizontal" role="form" [formGroup]="registerForm">
+                                
+                                <div class="form-group" [ngClass]="errorClass('fullname')">
+                                    <label for="firstname" class="col-md-3 control-label">Full Name</label>
+                                    <div class="col-md-9">
+<input type="text" class="form-control" formControlName="fullname" placeholder="First Name">
+                               <span class="help-block error-message">{{errorMessage("fullname")}}</span>
+                                    </div>
+                                </div>
+
+ <div class="form-group" [ngClass]="errorClass('username')">
+                                    <label for="lastname" class="col-md-3 control-label">Username</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="lastname" placeholder="Last Name" formControlName="username">
+                                        <span class="help-block error-message">{{errorMessage("username")}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" [ngClass]="errorClass('email')">
+                                    <label for="email" class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email" placeholder="Email Address" formControlName="email">
+                                        <span class="help-block error-message">{{errorMessage("email")}}</span>
+                                    </div>
+                                </div>
+                                    
+                           
+                               
+                                <div class="form-group" [ngClass]="errorClass('password')">
+                                    <label for="password" class="col-md-3 control-label">Password</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="passwd" placeholder="Password" formControlName="password">
+                                        <span class="help-block error-message">{{errorMessage("password")}}</span>
+                                    </div>
+                                </div>
+                                    
+
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="button" class="btn btn-info" (click)="register(this)"> Sign Up</button>
+                                       
+                                    </div>
+                                </div>
+                                
+                          
+                                
+                                
+                            </form>
+                         </div>
+                    </div>
+                
+         </div> 

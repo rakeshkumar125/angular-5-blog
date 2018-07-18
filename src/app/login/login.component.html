@@ -1,0 +1,30 @@
+<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2">                    
+          
+        
+        <!-- ============ Start Form ========== -->            
+        <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-danger" *ngIf="loginCredentialError">
+                            <strong>Error!</strong> Sorry username or password worng !
+                        </div>
+
+                        <form role="form" [formGroup]="loginForm">
+                            <fieldset>
+                                <div class="form-group" [ngClass]="errorClass('username')">
+                                    <input class="form-control" placeholder="username" name="username" type="text"  formControlName="username">
+                                    <span class="help-block error-message">{{errorMessage("username")}}</span>
+                                </div>
+                                <div class="form-group" [ngClass]="errorClass('password')">
+                                    <input class="form-control" placeholder="Password" name="password" type="password"  formControlName="password">
+                                    <span class="help-block error-message">{{errorMessage("password")}}</span>
+                                </div>
+                                 <button type="submit" class="btn btn-sm btn-success" (click)="userLogin()">Login</button> 
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+        </div>
