@@ -2,3 +2,31 @@
 header{
 	margin-bottom: 80px;
 }
+.logout{ cursor: pointer; }
+.postContentEditor .ngx-toolbar-set{
+	font-size: 13px;
+    font-weight: bold;
+}
+
+ul.dashboard-elements li {
+    float: left;
+    list-style: none;
+    margin: 0px 12px 0px 12px;
+    /*border: 3px solid #ccc;*/
+    width: 23%;
+    padding: 28px 8px 21px 0px;
+    text-align: center;
+}
+
+ul.dashboard-elements li:hover{
+	background-color: #ddd;
+}
+ul.dashboard-elements li a{
+	text-decoration: none;
+	color: #000;
+}
+ul.dashboard-elements li i {
+    text-align: center;
+    display: block;
+    font-size: 40px;
+}

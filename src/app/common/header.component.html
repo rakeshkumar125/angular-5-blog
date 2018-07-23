@@ -12,7 +12,12 @@
       <li *ngIf="!isUserlogedin"><a routerLink='login'><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
       <li *ngIf="isUserlogedin"><a routerLink='dashboard'><span class="glyphicon glyphicon-user"></span> Dashboard</a></li>
-      <li *ngIf="isUserlogedin" (click)="logout()"><a><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+      <li *ngIf="isUserlogedin" (click)="logout()">
+        <a class="logout">
+          <span class="glyphicon glyphicon-user"></span> 
+          Logout
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
-
+import { NgxEditorModule } from 'ngx-editor';
 
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared/authGuard';
@@ -36,7 +36,8 @@ import { AddpostComponent } from './addpost/addpost.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    routing
+    routing,
+    NgxEditorModule
   ],
   providers: [AppService, AuthGuard],
   bootstrap: [AppComponent]

@@ -18,6 +18,7 @@ $app->add(function ($req, $res, $next) {
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
 });
 
+//======= Code for DB Connection ======
 function getConnection() {
     $dbhost="localhost";
     $dbuser="root";
@@ -27,7 +28,6 @@ function getConnection() {
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;
 }
-
 
 //======= Code for register User ======
 $app->post('/signup', function (Request $request, Response $response, array $args) {
@@ -64,8 +64,7 @@ $app->post('/signup', function (Request $request, Response $response, array $arg
    // return $response;
 });
 
-
-
+//======= Code for login User ======
 $app->post('/login', function (Request $request, Response $response, array $args) {
 
 	$userRrequestedData = $request->getParsedBody();
@@ -93,6 +92,15 @@ $app->post('/login', function (Request $request, Response $response, array $args
 	}
 });
 
+//======= Code for get categories ======
 
+$app->get('/categories', function (Request $request, Response $response, array $args) {
+    
+        $db = getConnection();
+        $sql = "SELECT id,category_name FROM `cms_product_categories`";
+        $stmt = $db->query($sql);
+        $categoriesList = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return json_encode($categoriesList);
+});
 
 $app->run();

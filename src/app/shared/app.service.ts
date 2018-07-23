@@ -19,7 +19,7 @@ export class AppService{
     	formData.append("username",user.username);
     	formData.append("email",user.email);
     	formData.append("password",user.password);
-    	return this._http.post('http://localhost/angular/blog/api/signup',formData)
+    	return this._http.post('http://localhost/angular/editor-latest/api/signup',formData)
     	.map(res=>{ return res});
 
     }
@@ -28,7 +28,7 @@ export class AppService{
    		let userCredentials = new FormData();
    		userCredentials.append("username",loginDetails.username);
    		userCredentials.append("password",loginDetails.password);
-   		return this._http.post('http://localhost/angular/blog/api/login',userCredentials)
+   		return this._http.post('http://localhost/angular/editor-latest/api/login',userCredentials)
    		.map(res=>{ return res; });
 
     }
@@ -47,6 +47,10 @@ export class AppService{
        }
    	}
 
+    getCategories(){
+      return this._http.get("http://localhost/angular/editor-latest/api/categories")
+      .map(res=>{return res;});
+    }
 
 
 }

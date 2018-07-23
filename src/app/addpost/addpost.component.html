@@ -1,3 +1,21 @@
-<p>
-  addpost works!
-</p>
+
+<div class="row">
+	<div class="col-md-8">
+		<app-ngx-editor class="postContentEditor" [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
+
+
+	</div>
+	<div class="col-md-4">
+		
+		<div class="form-group">
+	    <label for="email">Choose Categories:</label>
+	    <select class="form-control">
+	    	<option *ngFor="let category of categories;" value="{{category.id}}">{{category.category_name}}</option>
+	    </select>
+	  </div>
+	</div>
+
+</div>
+
+
+
