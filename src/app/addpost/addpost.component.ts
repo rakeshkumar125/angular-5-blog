@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../shared/app.service';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-addpost',
   templateUrl: './addpost.component.html',
@@ -29,13 +32,48 @@ export class AddpostComponent implements OnInit {
         ["link", "unlink", "image", "video"]
     ]
 };	
-  constructor(private service:AppService) { }
+  constructor(private service:AppService, private fb:FormBuilder) { }
 
+  postForm;
+  postFormError = new Map();
   ngOnInit() {
 
   	this.service.getCategories().subscribe(res=>{
   		this.categories = res;
   	})
+  	this.postForm = this.fb.group({
+  		category:[""],
+  		content:[""],
+  		title:[""]
+  	});
 
+
+  }
+
+  errorMessage(control){
+    return this.postFormError.get(control);
+  }
+  errorClass(control){
+    console.log(this.postFormError.get(control));
+    return (this.postFormError.get(control) != undefined && this.postFormError.get(control).length>0) ? 'has-error' :'';
+  }
+
+  addPost(){
+    let post={
+      title:this.postForm.get('title').value,
+      content:(typeof(this.postForm.get('content').value) != 'undefined')? this.postForm.get('content').value : "",
+      category:this.postForm.get('category').value,
+      userID : localStorage.getItem('user_id')
+    };
+
+    this.service.addPost(post).subscribe(res=>{
+      if(res==false){
+        this.postFormError.clear();
+      }else{
+        for(let error in res){
+          this.postFormError.set(res[error].error_field,res[error].error);
+        }
+      }
+    });
   }
 }

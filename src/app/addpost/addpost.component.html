@@ -1,21 +1,33 @@
 
 <div class="row">
+	<form [formGroup]="postForm">
 	<div class="col-md-8">
-		<app-ngx-editor class="postContentEditor" [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
-
+		
+		<div class="form-group" [ngClass]="errorClass('title')">
+	    <label for="email">Enter Title:</label>
+	    <input class="form-control" type="text" placeholder="Enter Title" name="title" formControlName="title">
+	    <span class="help-block errorMessage">
+	    	{{errorMessage('title')}}
+	    </span>
+	  </div>
+	  <div class="form-group" [ngClass]="errorClass('content')">
+		<app-ngx-editor class="postContentEditor" [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent" formControlName="content"></app-ngx-editor>
+		{{errorMessage('content')}}
+	</div>	
 
 	</div>
 	<div class="col-md-4">
 		
-		<div class="form-group">
+		<div class="form-group" [ngClass]="errorClass('category')">
 	    <label for="email">Choose Categories:</label>
-	    <select class="form-control">
+	    <select class="form-control" formControlName="category">
 	    	<option *ngFor="let category of categories;" value="{{category.id}}">{{category.category_name}}</option>
 	    </select>
+	    <span class="help-block errorMessage">{{errorMessage('category')}}</span>
 	  </div>
+	  <input type="button" (click)="addPost()" class="btn btn-primary" value="Submit">
+
+	  
 	</div>
-
+	</form>
 </div>
-
-
-

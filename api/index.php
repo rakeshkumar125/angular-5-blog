@@ -103,4 +103,40 @@ $app->get('/categories', function (Request $request, Response $response, array $
         return json_encode($categoriesList);
 });
 
+$app->post('/addpost', function (Request $request, Response $response, array $args) {
+
+    $postRrequestedData = $request->getParsedBody();
+    $config = array();
+    $config['array_to_validate']    = $postRrequestedData;
+    $config['required'] = "title,content,category";
+    $config['min_character_limit']      = array(
+                                        array(
+                                            'field_name' =>'title',
+                                            'no_of_character' =>'40',
+                                        ),
+                                        array(
+                                            'field_name' =>'content',
+                                            'no_of_character' =>'80'
+                                        )
+                                    );
+    $my_validator = new validator($config);
+    $error = $my_validator->process_validation();
+    if(!$error){
+        $db = getConnection();
+        $sql = "INSERT INTO `posts` (`id`, `title`, `content`, `category`, `status`, `userID`) VALUES (NULL, ?, ?, ?, ?, ?)";
+    
+        $vars = array($postRrequestedData['title'],
+        $postRrequestedData['content'],$postRrequestedData['category'],'publish',$postRrequestedData['userID']);
+        $sth = $db->prepare($sql);  
+        $sth->execute($vars);
+        print_r($db->errorInfo());
+        
+    }
+
+    return json_encode($error);
+    
+
+
+});
+
 $app->run();

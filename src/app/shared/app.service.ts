@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Response } from "@angular/http";
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
@@ -19,7 +20,7 @@ export class AppService{
     	formData.append("username",user.username);
     	formData.append("email",user.email);
     	formData.append("password",user.password);
-    	return this._http.post('http://localhost/angular/editor-latest/api/signup',formData)
+    	return this._http.post(environment.apiEndpoint+'signup',formData)
     	.map(res=>{ return res});
 
     }
@@ -28,14 +29,15 @@ export class AppService{
    		let userCredentials = new FormData();
    		userCredentials.append("username",loginDetails.username);
    		userCredentials.append("password",loginDetails.password);
-   		return this._http.post('http://localhost/angular/editor-latest/api/login',userCredentials)
+   		return this._http.post(environment.apiEndpoint+'login',userCredentials)
    		.map(res=>{ return res; });
 
     }
 
     setUserLogin(userDetails){
     	this.getLoggedInName.emit(userDetails.fullname);
-    	localStorage.setItem('token',userDetails.token);
+      localStorage.setItem('token',userDetails.token);
+    	localStorage.setItem('user_id',userDetails.data_id);
         return true;
     }
 
@@ -48,9 +50,22 @@ export class AppService{
    	}
 
     getCategories(){
-      return this._http.get("http://localhost/angular/editor-latest/api/categories")
+      return this._http.get(environment.apiEndpoint+"categories")
       .map(res=>{return res;});
     }
+
+    addPost(postDetails){
+      let postData = new FormData();
+      postData.append("title",postDetails.title);
+      postData.append("content",postDetails.content);
+      postData.append("category",postDetails.category);
+      postData.append("userID",postDetails.userID);
+      return this._http.post(environment.apiEndpoint+"addpost",postData)
+      .map(res=>{ return res});
+
+    }
+
+
 
 
 }
