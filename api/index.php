@@ -103,6 +103,7 @@ $app->get('/categories', function (Request $request, Response $response, array $
         return json_encode($categoriesList);
 });
 
+//======= Code for add post ======
 $app->post('/addpost', function (Request $request, Response $response, array $args) {
 
     $postRrequestedData = $request->getParsedBody();
@@ -123,14 +124,30 @@ $app->post('/addpost', function (Request $request, Response $response, array $ar
     $error = $my_validator->process_validation();
     if(!$error){
         $db = getConnection();
-        $sql = "INSERT INTO `posts` (`id`, `title`, `content`, `category`, `status`, `userID`) VALUES (NULL, ?, ?, ?, ?, ?)";
-    
-        $vars = array($postRrequestedData['title'],
-        $postRrequestedData['content'],$postRrequestedData['category'],'publish',$postRrequestedData['userID']);
-        $sth = $db->prepare($sql);  
-        $sth->execute($vars);
-        print_r($db->errorInfo());
-        
+        if(isset($postRrequestedData['postID'])){
+
+            $sql = "UPDATE `posts` SET `title` = ?, `content` = ?, `category`=? WHERE `posts`.`id` = ?";
+            $vars = array($postRrequestedData['title'],
+                            $postRrequestedData['content'],
+                            $postRrequestedData['category'],
+                            $postRrequestedData['postID']);
+
+
+            $sth = $db->prepare($sql);  
+            $sth->execute($vars);
+
+        }else{
+
+            $sql = "INSERT INTO `posts` (`id`, `title`, `content`, `category`, `status`, `userID`) VALUES (NULL, ?, ?, ?, ?, ?)";
+            $vars = array($postRrequestedData['title'],
+                            $postRrequestedData['content'],
+                            $postRrequestedData['category'],
+                            'publish',
+                            $postRrequestedData['userID']);
+            
+            $sth = $db->prepare($sql);  
+            $sth->execute($vars);
+        }
     }
 
     return json_encode($error);
@@ -138,5 +155,43 @@ $app->post('/addpost', function (Request $request, Response $response, array $ar
 
 
 });
+
+//======= Code for get all posts ======
+
+$app->get('/posts', function (Request $request, Response $response, array $args) {
+    
+        $db = getConnection();
+        $sql = "SELECT * FROM `posts`";
+        $stmt = $db->query($sql);
+        $categoriesList = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return json_encode($categoriesList);
+});
+
+
+//======= Code for get single post using @id ======
+
+$app->get('/post/{id}', function (Request $request, Response $response, array $args) {
+        if(isset($args['id'])){
+            $db = getConnection();
+            $sql = "SELECT * FROM `posts` where id=".$args['id'];
+            $stmt = $db->query($sql);
+            $categoriesList = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return json_encode($categoriesList);
+        }else{
+            return "Id Not exit";
+        }
+});
+
+
+$app->post('/deletePost', function (Request $request, Response $response, array $args) {
+    $userRrequestedData = $request->getParsedBody();
+    
+       
+        $db = getConnection();
+        $sql = "delete FROM `posts` where id=".$userRrequestedData['postID'];
+        $db->query($sql);
+        
+});
+
 
 $app->run();

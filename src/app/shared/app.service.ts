@@ -14,7 +14,7 @@ export class AppService{
 
     }
 
-	userRegister(user){
+	  userRegister(user){
     	let formData = new FormData();
     	formData.append("fullname",user.fullname);
     	formData.append("username",user.username);
@@ -54,6 +54,19 @@ export class AppService{
       .map(res=>{return res;});
     }
 
+    getposts(){
+      return this._http.get(environment.apiEndpoint+"posts")
+      .map(res=>{return res;});
+    }
+
+    getSinglePosts(id){
+      let URl = environment.apiEndpoint+"post/"+id;
+      return this._http.get(URl)
+        .map(res=>{ return res[0];});
+    }
+
+
+
     addPost(postDetails){
       let postData = new FormData();
       postData.append("title",postDetails.title);
@@ -65,6 +78,26 @@ export class AppService{
 
     }
 
+    updatePost(postDetails){
+      let postData = new FormData();
+      postData.append("title",postDetails.title);
+      postData.append("content",postDetails.content);
+      postData.append("category",postDetails.category);
+      postData.append("userID",postDetails.userID);
+      postData.append("postID",postDetails.postID);
+      return this._http.post(environment.apiEndpoint+"addpost",postData)
+      .map(res=>{ return res});
+    }
+
+
+    deletePost(postID){
+
+      let postData = new FormData();
+      postData.append("postID",postID);
+      return this._http.post(environment.apiEndpoint+"deletePost",postData)
+      .map(res=>{  return res; });
+
+    }
 
 
 

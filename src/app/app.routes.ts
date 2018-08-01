@@ -6,15 +6,15 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddpostComponent } from './addpost/addpost.component'; 
 import { AuthGuard } from './shared/authGuard';
-/*import { DashboardComponent } from './dashboard/dashboard.component';
-import { FormComponent } from './form/form.component';
-import { AuthGuard } from './authcheck';*/
+import { PostsComponent } from './posts/posts.component';
+import { EditpComponent } from './editp/editp.component';
 
 export const routes : Routes = [
 {path:'signup',component:SignupComponent},
 {path:'login',component:LoginComponent},
-{path:'addpost',component:AddpostComponent},
-/*{path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard]},*/
+{path:'addpost',component:AddpostComponent , canActivate:[AuthGuard]},
+{path:'posts', component:PostsComponent , canActivate:[AuthGuard]},
+{path:'editp/:id', component:EditpComponent , canActivate:[AuthGuard]},
 {path:'dashboard',component:DashboardComponent, canActivate:[AuthGuard]},
 {path:'**',component:HomeComponent}
 ];

@@ -15,7 +15,9 @@ import { FooterComponent } from './common/footer.component';
 import { AppService } from './shared/app.service';
 import { routing } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddpostComponent } from './addpost/addpost.component'; 
+import { AddpostComponent } from './addpost/addpost.component';
+import { PostsComponent } from './posts/posts.component';
+import { EditpComponent } from './editp/editp.component'; 
 
 
 
@@ -29,7 +31,9 @@ import { AddpostComponent } from './addpost/addpost.component';
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
-    AddpostComponent
+    AddpostComponent,
+    PostsComponent,
+    EditpComponent
   ],
   imports: [
     BrowserModule,

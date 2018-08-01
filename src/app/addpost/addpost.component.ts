@@ -54,7 +54,6 @@ export class AddpostComponent implements OnInit {
     return this.postFormError.get(control);
   }
   errorClass(control){
-    console.log(this.postFormError.get(control));
     return (this.postFormError.get(control) != undefined && this.postFormError.get(control).length>0) ? 'has-error' :'';
   }
 
@@ -70,6 +69,7 @@ export class AddpostComponent implements OnInit {
       if(res==false){
         this.postFormError.clear();
       }else{
+        this.postFormError.clear();
         for(let error in res){
           this.postFormError.set(res[error].error_field,res[error].error);
         }
