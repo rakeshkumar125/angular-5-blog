@@ -8,6 +8,7 @@ import { AddpostComponent } from './addpost/addpost.component';
 import { AuthGuard } from './shared/authGuard';
 import { PostsComponent } from './posts/posts.component';
 import { EditpComponent } from './editp/editp.component';
+import { TableComponent } from './table/table.component'; 
 
 export const routes : Routes = [
 {path:'signup',component:SignupComponent},
@@ -16,6 +17,7 @@ export const routes : Routes = [
 {path:'posts', component:PostsComponent , canActivate:[AuthGuard]},
 {path:'editp/:id', component:EditpComponent , canActivate:[AuthGuard]},
 {path:'dashboard',component:DashboardComponent, canActivate:[AuthGuard]},
+{path:'table',component:TableComponent},
 {path:'**',component:HomeComponent}
 ];
 

@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Response } from "@angular/http";
+import { DataTableParams } from 'angular-4-data-table-fix';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -24,6 +25,8 @@ export class AppService{
     	.map(res=>{ return res});
 
     }
+
+  
 
     userLogin(loginDetails){
    		let userCredentials = new FormData();
@@ -55,7 +58,7 @@ export class AppService{
     }
 
     getposts(){
-      return this._http.get(environment.apiEndpoint+"posts")
+      return this._http.get(environment.apiEndpoint+"posts1")
       .map(res=>{return res;});
     }
 

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint:'http://localhost/angular/editor-latest/api/'
+  apiEndpoint:'http://localhost/angular/blog/api/'
 };
 
 /*

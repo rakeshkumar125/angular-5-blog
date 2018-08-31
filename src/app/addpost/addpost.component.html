@@ -1,7 +1,7 @@
 
 <div class="row">
 	<form [formGroup]="postForm">
-	<div class="col-md-8">
+	<div class="col col-md-8">
 		
 		<div class="form-group" [ngClass]="errorClass('title')">
 	    <label for="email">Enter Title:</label>
@@ -11,12 +11,12 @@
 	    </span>
 	  </div>
 	  <div class="form-group" [ngClass]="errorClass('content')">
-		<app-ngx-editor class="postContentEditor" [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlContent" formControlName="content"></app-ngx-editor>
+		<app-ngx-editor class="postContentEditor" [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="htmlConent" formControlName="content"></app-ngx-editor>
 		{{errorMessage('content')}}
 	</div>	
 
 	</div>
-	<div class="col-md-4">
+	<div class="col-6 col-md-4">
 		
 		<div class="form-group" [ngClass]="errorClass('category')">
 	    <label for="email">Choose Categories:</label>

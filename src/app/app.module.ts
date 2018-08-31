@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { NgxEditorModule } from 'ngx-editor';
+//import {DataTableModule} from "angular2-datatable";
+//import { DataTableModule } from 'angular-4-data-table/src/index';
+import { DataTableModule } from 'angular-4-data-table-fix';
 
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared/authGuard';
@@ -17,7 +20,8 @@ import { routing } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddpostComponent } from './addpost/addpost.component';
 import { PostsComponent } from './posts/posts.component';
-import { EditpComponent } from './editp/editp.component'; 
+import { EditpComponent } from './editp/editp.component';
+import { TableComponent } from './table/table.component'; 
 
 
 
@@ -33,7 +37,8 @@ import { EditpComponent } from './editp/editp.component';
     DashboardComponent,
     AddpostComponent,
     PostsComponent,
-    EditpComponent
+    EditpComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { EditpComponent } from './editp/editp.component';
     HttpClientModule,
     ReactiveFormsModule,
     routing,
-    NgxEditorModule
+    NgxEditorModule,
+    DataTableModule
   ],
   providers: [AppService, AuthGuard],
   bootstrap: [AppComponent]

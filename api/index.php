@@ -167,6 +167,17 @@ $app->get('/posts', function (Request $request, Response $response, array $args)
         return json_encode($categoriesList);
 });
 
+//======= Code for get all posts ======
+
+$app->get('/posts1', function (Request $request, Response $response, array $args) {
+    
+        $db = getConnection();
+        $sql = "SELECT * FROM `posts`";
+        $stmt = $db->query($sql);
+        $categoriesList = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return json_encode($categoriesList);
+});
+
 
 //======= Code for get single post using @id ======
 
