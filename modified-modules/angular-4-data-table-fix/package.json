@@ -1,0 +1,68 @@
+{
+  "_from": "angular-4-data-table-fix",
+  "_id": "angular-4-data-table-fix@0.1.2",
+  "_inBundle": false,
+  "_integrity": "sha1-WO/1I/DQZu1valbCp3DeZBUfGzY=",
+  "_location": "/angular-4-data-table-fix",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "angular-4-data-table-fix",
+    "name": "angular-4-data-table-fix",
+    "escapedName": "angular-4-data-table-fix",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-4-data-table-fix/-/angular-4-data-table-fix-0.1.2.tgz",
+  "_shasum": "58eff523f0d066ed6f6a56c2a770de64151f1b36",
+  "_spec": "angular-4-data-table-fix",
+  "_where": "/home1/htdocs/angular/blog",
+  "author": {
+    "name": "Dmitrii Bilukha",
+    "email": "siniidrozd@gmail.com",
+    "url": "http://donsamogon.com"
+  },
+  "bugs": {
+    "url": "https://github.com/MIt9/angular-4-data-table/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "angular-2-data-table fork with fix for angular 4",
+  "devDependencies": {
+    "@angular/common": "^2.0.0",
+    "@angular/core": "^2.0.0",
+    "@angular/forms": "^2.0.0",
+    "rxjs": "^5.0.0-beta.12",
+    "typescript": "^2.0.2"
+  },
+  "homepage": "https://github.com/MIt9/angular-4-data-table#readme",
+  "keywords": [
+    "angular",
+    "angular4",
+    "Angular 4",
+    "ng2",
+    "datatable",
+    "data-table",
+    "data table",
+    "pagination"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "angular-4-data-table-fix",
+  "peerDependencies": {
+    "@angular/core": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MIt9/angular-4-data-table.git"
+  },
+  "scripts": {},
+  "typings": "dist/index.d.ts",
+  "version": "0.1.2"
+}
