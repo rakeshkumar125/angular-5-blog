@@ -1,4 +1,4 @@
-	<a class="btn btn-primary" routerLink='/addpost'>ADD Post</a>
+<!-- 	<a class="btn btn-primary" routerLink='/addpost'>ADD Post</a>
  <div class="table-responsive">
 
                 
@@ -45,4 +45,42 @@
 </ul>
                 
             </div>
-       
+        -->
+
+<div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
+    <data-table id="persons-grid"
+        headerTitle="Employees"
+        [items]="items"
+        [itemCount]="itemCount"
+        (reload)="reloadItems($event)"
+
+        (rowClick)="rowClick($event)"
+        (rowDoubleClick)="rowDoubleClick($event)"
+        [rowTooltip]="rowTooltip"
+        >
+        <data-table-column
+            [property]="'title'"
+            [header]="'Title'"
+            [sortable]="true"
+            [resizable]="true">
+        </data-table-column>
+        <data-table-column
+            [property]="'active'"
+            [header]="'Action'"
+            [width]="100"
+            [resizable]="true">
+            <ng-template #dataTableHeader let-item="item">
+                <span style="color: rgb(232, 0, 0)">Action</span>
+            </ng-template>
+            <ng-template #dataTableCell let-item="item">
+                <span style="color: grey">
+                <span class="glyphicon glyphicon-ok" *ngIf="item.status=='publish'"></span>
+                <span class="glyphicon glyphicon-remove" *ngIf="item.status!='publish'"></span>
+                <a class="btn btn-primary btn-xs" routerLink="/editp/{{item.id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-primary btn-xs" (click)="deletePost(item.id)"><span class="glyphicon glyphicon-trash"></span></a>
+                </span>
+            </ng-template>
+        </data-table-column>
+
+    </data-table>
+</div>        

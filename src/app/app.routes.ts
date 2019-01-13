@@ -9,6 +9,7 @@ import { AuthGuard } from './shared/authGuard';
 import { PostsComponent } from './posts/posts.component';
 import { EditpComponent } from './editp/editp.component';
 import { TableComponent } from './table/table.component'; 
+import { Table1Component } from './table1/table1.component'; 
 
 export const routes : Routes = [
 {path:'signup',component:SignupComponent},
@@ -18,6 +19,7 @@ export const routes : Routes = [
 {path:'editp/:id', component:EditpComponent , canActivate:[AuthGuard]},
 {path:'dashboard',component:DashboardComponent, canActivate:[AuthGuard]},
 {path:'table',component:TableComponent},
+{path:'table1',component:Table1Component},
 {path:'**',component:HomeComponent}
 ];
 

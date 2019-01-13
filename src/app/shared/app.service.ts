@@ -62,6 +62,19 @@ export class AppService{
       .map(res=>{return res;});
     }
 
+    getposts1(params){
+
+      console.log(params);
+      let parameters = "";
+      for (let key in params) {
+          console.log(key);
+          parameters +=key+"="+params[key]+"&";
+      }
+
+      return this._http.get(environment.apiEndpoint+"posts1?"+parameters)
+      .map(res=>{return res;});
+    }
+
     getSinglePosts(id){
       let URl = environment.apiEndpoint+"post/"+id;
       return this._http.get(URl)

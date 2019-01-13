@@ -1,15 +1,10 @@
 <?php
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-
-//====== create connection for validation 
-$conn = ($GLOBALS["___mysqli_ston"] = mysqli_connect("localhost",  "root",  "")) or die(mysqli_error($GLOBALS["___mysqli_ston"]));
-mysqli_select_db($GLOBALS["___mysqli_ston"], "agular_application");
-
 require 'vendor/autoload.php';
-require 'validate.php';
 $app = new \Slim\App;
-
+require 'settings.php';
+require 'validate.php';
 $app->add(function ($req, $res, $next) {
     $response = $next($req, $res);
     return $response
@@ -20,10 +15,10 @@ $app->add(function ($req, $res, $next) {
 
 //======= Code for DB Connection ======
 function getConnection() {
-    $dbhost="localhost";
-    $dbuser="root";
-    $dbpass="";
-    $dbname="agular_application";
+    $dbhost= DB_HOST;
+    $dbuser=DB_USER;
+    $dbpass=DB_PASSWORD;
+    $dbname=DB_NAME;
     $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;
@@ -159,7 +154,6 @@ $app->post('/addpost', function (Request $request, Response $response, array $ar
 //======= Code for get all posts ======
 
 $app->get('/posts', function (Request $request, Response $response, array $args) {
-    
         $db = getConnection();
         $sql = "SELECT * FROM `posts`";
         $stmt = $db->query($sql);
@@ -170,12 +164,32 @@ $app->get('/posts', function (Request $request, Response $response, array $args)
 //======= Code for get all posts ======
 
 $app->get('/posts1', function (Request $request, Response $response, array $args) {
-    
+        $postRrequestedData = $request->getParsedBody();
+        $offset=0;
+        if(isset($_GET['offset'])){
+            $offset = $_GET['offset'];
+        }
+        $limit=10;
+        if(isset($_GET['limit'])){
+            $limit = $_GET['limit'];
+        }
+        $orderBy="";
+        if(isset($_GET['sortBy']) && isset($_GET['sortAsc'])){
+            $sort = ($_GET['sortAsc']=="true") ? "ASC" : "DESC";
+            $orderBy = "order by p.".$_GET['sortBy']." ".$sort;
+        }
+
         $db = getConnection();
-        $sql = "SELECT * FROM `posts`";
+        //SELECT *,(select category_name from cms_product_categories where id=p.category) as category FROM `posts` p order by p.category ASC limit 0,10
+        $sql = "SELECT *,(select category_name from cms_product_categories where id=p.category) as category FROM `posts` p  {$orderBy} limit {$offset} , {$limit}";
+
         $stmt = $db->query($sql);
         $categoriesList = $stmt->fetchAll(PDO::FETCH_OBJ);
-        return json_encode($categoriesList);
+        
+        $stmt1 = $db->query("SELECT count(*) as `count` FROM `posts`");
+        $count = $stmt1->fetchAll(PDO::FETCH_OBJ);
+        $data = array("data"=>$categoriesList,"count"=>$count[0]->count);
+        return json_encode($data);
 });
 
 

@@ -21,7 +21,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddpostComponent } from './addpost/addpost.component';
 import { PostsComponent } from './posts/posts.component';
 import { EditpComponent } from './editp/editp.component';
-import { TableComponent } from './table/table.component'; 
+import { TableComponent } from './table/table.component';
+import { Table1Component } from './table1/table1.component'; 
 
 
 
@@ -38,7 +39,8 @@ import { TableComponent } from './table/table.component';
     AddpostComponent,
     PostsComponent,
     EditpComponent,
-    TableComponent
+    TableComponent,
+    Table1Component
   ],
   imports: [
     BrowserModule,
